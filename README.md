@@ -1,8 +1,37 @@
-# Nuxt 3 Minimal Starter
+# 🎪 Showman - Manage your IoT Projects and Devices
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Showman is an application to manage IoT Projects and Devices as well as orchestrating and automating connected services. It show possible integrations for a production grade application, which includes some up to date features like:
 
-## Setup
+- User Auth (Keycloak)
+
+<br>
+
+# Application Setup
+
+## Keycloak
+
+Keycloak is used for local user authentication. To initially setup the provider, do the following steps on the keycloak instance after spinning up the docker compose file.
+
+1. create new realm `showman`
+2. create new client `showman-auth`
+
+```yaml
+Client ID: showman-auth
+Name: Showman Auth Client
+# values for dev - add others for production
+Root Url: http://localhost:8081
+Home Url: http://localhost:3000
+Valid redirect URIs: http://localhost:3000/*
+
+Client authentication: on
+```
+
+3. Create User for new client
+4. Update the `.env` file with the keycloak credentials
+
+## Nuxt
+
+### Setup
 
 Make sure to install the dependencies:
 
@@ -17,7 +46,7 @@ npm install
 pnpm install
 ```
 
-## Development Server
+### Development Server
 
 Start the development server on `http://localhost:3000`
 
@@ -25,7 +54,7 @@ Start the development server on `http://localhost:3000`
 npm run dev
 ```
 
-## Production
+### Production
 
 Build the application for production:
 

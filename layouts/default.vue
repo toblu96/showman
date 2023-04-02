@@ -21,6 +21,8 @@ import {
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 
+const { signOut, data: userData } = useSession();
+
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
   { name: "Projects", href: "#", icon: FolderIcon, current: false },
@@ -38,11 +40,24 @@ const teams = [
   { id: 3, name: "MDSE", href: "#", initial: "M", current: false },
 ];
 const userNavigation = [
-  { name: "Your profile", href: "#" },
-  { name: "Sign out", href: "#" },
+  { type: "link", name: "Your profile", href: "#" },
+  {
+    type: "button",
+    name: "Sign out",
+    cb: () => {
+      signOut();
+    },
+  },
 ];
 
 const sidebarOpen = ref(false);
+
+const getUsernameInitials = () => {
+  const [firstName, lastName] = userData.value?.user?.name?.split(
+    " "
+  ) as string[];
+  return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
+};
 </script>
 
 <template>
@@ -308,15 +323,24 @@ const sidebarOpen = ref(false);
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
                 <img
+                  v-if="userData?.user?.image"
                   class="h-8 w-8 rounded-full bg-gray-50"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
                 />
+                <span
+                  v-else
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500"
+                >
+                  <span class="text-sm font-medium leading-none text-white">
+                    {{ getUsernameInitials() }}
+                  </span>
+                </span>
                 <span class="hidden lg:flex lg:items-center">
                   <span
                     class="ml-4 max-w-[10rem] truncate text-sm font-semibold leading-6 text-gray-900"
                     aria-hidden="true"
-                    >Tim Cook</span
+                    >{{ userData?.user?.name || "Darth Vader" }}</span
                   >
                   <ChevronDownIcon
                     class="ml-2 h-5 w-5 text-gray-400"
@@ -341,6 +365,7 @@ const sidebarOpen = ref(false);
                     v-slot="{ active }"
                   >
                     <a
+                      v-if="item.type === 'link'"
                       :href="item.href"
                       :class="[
                         active ? 'bg-gray-50' : '',
@@ -348,6 +373,17 @@ const sidebarOpen = ref(false);
                       ]"
                       >{{ item.name }}</a
                     >
+                    <button
+                      v-else
+                      class="w-full text-left"
+                      :class="[
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900',
+                      ]"
+                      @click="item.cb"
+                    >
+                      Sign out
+                    </button>
                   </MenuItem>
                 </MenuItems>
               </transition>
