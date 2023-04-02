@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
@@ -13,29 +12,30 @@ import {
 import {
   Bars3Icon,
   BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
+  QueueListIcon,
   Cog6ToothIcon,
-  DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon,
+  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
   { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+  { name: "Templates", href: "#", icon: SquaresPlusIcon, current: false },
+  {
+    name: "Activities",
+    href: "#",
+    icon: QueueListIcon,
+    current: false,
+  },
 ];
 const teams = [
-  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+  { id: 1, name: "App Admins", href: "#", initial: "A", current: false },
+  { id: 2, name: "RDIA", href: "#", initial: "R", current: false },
+  { id: 3, name: "MDSE", href: "#", initial: "M", current: false },
 ];
 const userNavigation = [
   { name: "Your profile", href: "#" },
@@ -119,8 +119,8 @@ const sidebarOpen = ref(false);
                             :class="[
                               item.current
                                 ? 'bg-gray-800 text-white'
-                                : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                                : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                             ]"
                           >
                             <component
@@ -146,8 +146,8 @@ const sidebarOpen = ref(false);
                             :class="[
                               team.current
                                 ? 'bg-gray-800 text-white'
-                                : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                                : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                              'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                             ]"
                           >
                             <span
@@ -205,8 +205,8 @@ const sidebarOpen = ref(false);
                     :class="[
                       item.current
                         ? 'bg-gray-800 text-white'
-                        : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                        : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                     ]"
                   >
                     <component
@@ -230,8 +230,8 @@ const sidebarOpen = ref(false);
                     :class="[
                       team.current
                         ? 'bg-gray-800 text-white'
-                        : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                        : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                     ]"
                   >
                     <span
@@ -314,9 +314,9 @@ const sidebarOpen = ref(false);
                 />
                 <span class="hidden lg:flex lg:items-center">
                   <span
-                    class="ml-4 text-sm font-semibold leading-6 text-gray-900"
+                    class="ml-4 max-w-[10rem] truncate text-sm font-semibold leading-6 text-gray-900"
                     aria-hidden="true"
-                    >Tom Cook</span
+                    >Tim Cook</span
                   >
                   <ChevronDownIcon
                     class="ml-2 h-5 w-5 text-gray-400"
