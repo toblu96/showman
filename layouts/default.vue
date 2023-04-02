@@ -21,17 +21,22 @@ import {
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 
+const route = useRoute();
+
 const { signOut, data: userData } = useSession();
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Templates", href: "#", icon: SquaresPlusIcon, current: false },
+  { name: "Dashboard", href: "/", icon: HomeIcon },
+  { name: "Projects", href: "/projects", icon: FolderIcon },
+  {
+    name: "Templates",
+    href: "/templates",
+    icon: SquaresPlusIcon,
+  },
   {
     name: "Activities",
     href: "#",
     icon: QueueListIcon,
-    current: false,
   },
 ];
 const teams = [
@@ -129,10 +134,10 @@ const getUsernameInitials = () => {
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="item in navigation" :key="item.name">
-                          <a
-                            :href="item.href"
+                          <NuxtLink
+                            :to="item.href"
                             :class="[
-                              item.current
+                              route.matched[0].path === item.href
                                 ? 'bg-gray-800 text-white'
                                 : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                               'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
@@ -144,7 +149,7 @@ const getUsernameInitials = () => {
                               aria-hidden="true"
                             />
                             {{ item.name }}
-                          </a>
+                          </NuxtLink>
                         </li>
                       </ul>
                     </li>
@@ -218,7 +223,7 @@ const getUsernameInitials = () => {
                   <a
                     :href="item.href"
                     :class="[
-                      item.current
+                      route.matched[0].path === item.href
                         ? 'bg-gray-800 text-white'
                         : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                       'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',

@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { data: userData } = useSession();
+</script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <div>
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    some text
+    {{ userData }}
+  </div>
 </template>
