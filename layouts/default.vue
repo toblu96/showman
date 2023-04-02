@@ -394,9 +394,19 @@ const getUsernameInitials = () => {
 
       <main class="py-10">
         <div class="px-4 sm:px-6 lg:px-8">
-          <!-- Your content -->
+          <slot />
         </div>
       </main>
     </div>
   </div>
 </template>
+
+<style scoped>
+html {
+  @apply h-full bg-white;
+}
+
+body {
+  @apply h-full;
+}
+</style>
