@@ -29,6 +29,14 @@ Client authentication: on
 3. Create User for new client
 4. Update the `.env` file with the keycloak credentials
 
+## YugabyteDB
+
+YugabyteDB serves as the primary database for application state. It's a cloud native database which is compatible with Postgres, prepared for hybrid and multi-cloud deployments and 100% open source.
+
+1. Start the DB using the compose file
+2. Open the exposed Admin UI on port 9000 (http://localhost:9000/)
+3. Add a schema to the database (prisma) and start the application
+
 ## Nuxt
 
 ### Setup
