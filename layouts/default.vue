@@ -7,8 +7,8 @@ import {
   MenuItem,
   MenuItems,
   TransitionChild,
-  TransitionRoot,
-} from "@headlessui/vue";
+  TransitionRoot
+} from '@headlessui/vue'
 import {
   Bars3Icon,
   BellIcon,
@@ -17,52 +17,52 @@ import {
   FolderIcon,
   HomeIcon,
   SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/vue/24/outline";
-import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
+  XMarkIcon
+} from '@heroicons/vue/24/outline'
+import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
-const route = useRoute();
+const route = useRoute()
 
-const { signOut, data: userData } = useSession();
+const { signOut, data: userData } = useSession()
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: HomeIcon },
-  { name: "Projects", href: "/projects", icon: FolderIcon },
+  { name: 'Dashboard', href: '/', icon: HomeIcon },
+  { name: 'Projects', href: '/projects', icon: FolderIcon },
   {
-    name: "Templates",
-    href: "/templates",
-    icon: SquaresPlusIcon,
+    name: 'Templates',
+    href: '/templates',
+    icon: SquaresPlusIcon
   },
   {
-    name: "Activities",
-    href: "#",
-    icon: QueueListIcon,
-  },
-];
+    name: 'Activities',
+    href: '#',
+    icon: QueueListIcon
+  }
+]
 const teams = [
-  { id: 1, name: "App Admins", href: "#", initial: "A", current: false },
-  { id: 2, name: "RDIA", href: "#", initial: "R", current: false },
-  { id: 3, name: "MDSE", href: "#", initial: "M", current: false },
-];
+  { id: 1, name: 'App Admins', href: '#', initial: 'A', current: false },
+  { id: 2, name: 'RDIA', href: '#', initial: 'R', current: false },
+  { id: 3, name: 'MDSE', href: '#', initial: 'M', current: false }
+]
 const userNavigation = [
-  { type: "link", name: "Your profile", href: "#" },
+  { type: 'link', name: 'Your profile', href: '#' },
   {
-    type: "button",
-    name: "Sign out",
+    type: 'button',
+    name: 'Sign out',
     cb: () => {
-      signOut();
-    },
-  },
-];
+      signOut()
+    }
+  }
+]
 
-const sidebarOpen = ref(false);
+const sidebarOpen = ref(false)
 
 const getUsernameInitials = () => {
   const [firstName, lastName] = userData.value?.user?.name?.split(
-    " "
-  ) as string[];
-  return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
-};
+    ' '
+  ) as string[]
+  return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()
+}
 </script>
 
 <template>
@@ -127,7 +127,7 @@ const getUsernameInitials = () => {
                     class="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                     alt="Your Company"
-                  />
+                  >
                 </div>
                 <nav class="flex flex-1 flex-col">
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -172,8 +172,7 @@ const getUsernameInitials = () => {
                           >
                             <span
                               class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                              >{{ team.initial }}</span
-                            >
+                            >{{ team.initial }}</span>
                             <span class="truncate">{{ team.name }}</span>
                           </a>
                         </li>
@@ -213,7 +212,7 @@ const getUsernameInitials = () => {
             class="h-8 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
             alt="Your Company"
-          />
+          >
         </div>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -256,8 +255,7 @@ const getUsernameInitials = () => {
                   >
                     <span
                       class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                      >{{ team.initial }}</span
-                    >
+                    >{{ team.initial }}</span>
                     <span class="truncate">{{ team.name }}</span>
                   </a>
                 </li>
@@ -306,7 +304,7 @@ const getUsernameInitials = () => {
               placeholder="Search..."
               type="search"
               name="search"
-            />
+            >
           </form>
           <div class="flex items-center gap-x-4 lg:gap-x-6">
             <button
@@ -332,7 +330,7 @@ const getUsernameInitials = () => {
                   class="h-8 w-8 rounded-full bg-gray-50"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
-                />
+                >
                 <span
                   v-else
                   class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500"
@@ -345,8 +343,7 @@ const getUsernameInitials = () => {
                   <span
                     class="ml-4 max-w-[10rem] truncate text-sm font-semibold leading-6 text-gray-900"
                     aria-hidden="true"
-                    >{{ userData?.user?.name || "Darth Vader" }}</span
-                  >
+                  >{{ userData?.user?.name || "Darth Vader" }}</span>
                   <ChevronDownIcon
                     class="ml-2 h-5 w-5 text-gray-400"
                     aria-hidden="true"
@@ -376,8 +373,7 @@ const getUsernameInitials = () => {
                         active ? 'bg-gray-50' : '',
                         'block px-3 py-1 text-sm leading-6 text-gray-900',
                       ]"
-                      >{{ item.name }}</a
-                    >
+                    >{{ item.name }}</a>
                     <button
                       v-else
                       class="w-full text-left"

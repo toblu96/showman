@@ -1,7 +1,7 @@
-import KeycloakProvider from "next-auth/providers/keycloak";
-import { NuxtAuthHandler } from "#auth";
+import KeycloakProvider from 'next-auth/providers/keycloak'
+import { NuxtAuthHandler } from '#auth'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 
 export default NuxtAuthHandler({
   providers: [
@@ -9,7 +9,7 @@ export default NuxtAuthHandler({
     KeycloakProvider.default({
       clientId: config.KEYCLOAK_ID,
       clientSecret: config.KEYCLOAK_SECRET,
-      issuer: config.public.KEYCLOAK_ISSUER,
-    }),
-  ],
-});
+      issuer: config.public.KEYCLOAK_ISSUER
+    })
+  ]
+})

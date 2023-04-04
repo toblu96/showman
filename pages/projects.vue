@@ -1,66 +1,66 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import {
   BarsArrowUpIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  StarIcon,
-} from "@heroicons/vue/20/solid";
+  StarIcon
+} from '@heroicons/vue/20/solid'
 
 const projects = [
   {
-    name: "W800 Demo",
-    href: "#",
-    siteHref: "#",
-    repoHref: "#",
-    repo: "debbielewis/workcation",
-    tech: "Laravel",
-    lastDeploy: "3h ago",
-    location: "United states",
+    name: 'W800 Demo',
+    href: '#',
+    siteHref: '#',
+    repoHref: '#',
+    repo: 'debbielewis/workcation',
+    tech: 'Laravel',
+    lastDeploy: '3h ago',
+    location: 'United states',
     starred: true,
-    active: true,
+    active: true
   },
   {
-    name: "Lab Project",
-    href: "#",
-    siteHref: "#",
-    repoHref: "#",
-    repo: "debbielewis/workcation",
-    tech: "Laravel",
-    lastDeploy: "3h ago",
-    location: "United states",
+    name: 'Lab Project',
+    href: '#',
+    siteHref: '#',
+    repoHref: '#',
+    repo: 'debbielewis/workcation',
+    tech: 'Laravel',
+    lastDeploy: '3h ago',
+    location: 'United states',
     starred: false,
-    active: true,
+    active: true
   },
   {
-    name: "Workplace 001",
-    href: "#",
-    siteHref: "#",
-    repoHref: "#",
-    repo: "debbielewis/workcation",
-    tech: "Laravel",
-    lastDeploy: "3h ago",
-    location: "United states",
+    name: 'Workplace 001',
+    href: '#',
+    siteHref: '#',
+    repoHref: '#',
+    repo: 'debbielewis/workcation',
+    tech: 'Laravel',
+    lastDeploy: '3h ago',
+    location: 'United states',
     starred: true,
-    active: false,
-  },
+    active: false
+  }
   // More projects...
-];
+]
 const activityItems = [
   {
-    project: "Workplace 001",
-    commit: "2d89f0c8",
-    environment: "production",
-    time: "5m",
+    project: 'Workplace 001',
+    commit: '2d89f0c8',
+    environment: 'production',
+    time: '5m'
   },
   {
-    project: "Workcation",
-    commit: "2d89f0c8",
-    environment: "production",
-    time: "1h",
-  },
+    project: 'Workcation',
+    commit: '2d89f0c8',
+    environment: 'production',
+    time: '1h'
+  }
   // More items...
-];
+]
 </script>
 
 <template>
@@ -71,7 +71,9 @@ const activityItems = [
       <div class="overflow-y-auto bg-white px-8 lg:min-w-0 lg:flex-1">
         <div class="pb-4 pl-4 pr-6 pt-4 sm:pl-6 lg:pl-8 xl:pl-6 xl:pt-6">
           <div class="flex items-center">
-            <h1 class="flex-1 text-lg font-medium">Projects</h1>
+            <h1 class="flex-1 text-lg font-medium">
+              Projects
+            </h1>
             <Menu as="div" class="relative">
               <MenuButton
                 class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -97,8 +99,7 @@ const activityItems = [
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'block px-4 py-2 text-sm',
                       ]"
-                      >Name</a
-                    >
+                    >Name</a>
                   </MenuItem>
                   <MenuItem v-slot="{ active }">
                     <a
@@ -107,8 +108,7 @@ const activityItems = [
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'block px-4 py-2 text-sm',
                       ]"
-                      >Date modified</a
-                    >
+                    >Date modified</a>
                   </MenuItem>
                   <MenuItem v-slot="{ active }">
                     <a
@@ -117,8 +117,7 @@ const activityItems = [
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'block px-4 py-2 text-sm',
                       ]"
-                      >Date created</a
-                    >
+                    >Date created</a>
                   </MenuItem>
                 </div>
               </MenuItems>
@@ -182,8 +181,7 @@ const activityItems = [
                   </svg>
                   <span
                     class="truncate text-sm font-medium text-gray-500 group-hover:text-gray-900"
-                    >{{ project.repo }}</span
-                  >
+                  >{{ project.repo }}</span>
                 </a>
               </div>
               <div class="sm:hidden">
@@ -200,8 +198,7 @@ const activityItems = [
                   <a
                     :href="project.siteHref"
                     class="relative text-sm font-medium text-gray-500 hover:text-gray-900"
-                    >Visit site</a
-                  >
+                  >Visit site</a>
                   <button
                     type="button"
                     class="relative rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -241,7 +238,9 @@ const activityItems = [
     >
       <div class="pl-6 lg:w-80">
         <div class="pb-2 pt-6">
-          <h2 class="text-sm font-semibold">Activity</h2>
+          <h2 class="text-sm font-semibold">
+            Activity
+          </h2>
         </div>
         <div>
           <ul role="list" class="divide-y divide-gray-200">
@@ -251,11 +250,15 @@ const activityItems = [
                   class="h-6 w-6 rounded-full"
                   src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80"
                   alt=""
-                />
+                >
                 <div class="flex-1 space-y-1">
                   <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-medium">You</h3>
-                    <p class="text-sm text-gray-500">{{ item.time }}</p>
+                    <h3 class="text-sm font-medium">
+                      You
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                      {{ item.time }}
+                    </p>
                   </div>
                   <p class="text-sm text-gray-500">
                     Deployed {{ item.project }} ({{ item.commit }} in master) to
