@@ -35,7 +35,9 @@ YugabyteDB serves as the primary database for application state. It's a cloud na
 
 1. Start the DB using the compose file
 2. Open the exposed Admin UI on port 9000 (http://localhost:9000/)
-3. Add a schema to the database (prisma) and start the application
+3. Init the database by adding the schema - run `npx prisma db push`
+
+> ℹ If you run into problems running this command behind a corporate firewall, check out [this link](https://www.prisma.io/docs/concepts/components/prisma-cli/installation#using-a-http-proxy-for-the-cli).
 
 ## Nuxt
 
