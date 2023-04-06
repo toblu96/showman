@@ -1,3 +1,5 @@
+// https://prismaliser.app/
+// https://prisma-erd.simonknott.de/
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["metrics"]
@@ -5,11 +7,158 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // This value is read from the .env file.
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id      String @id @default(uuid())
-  details String
+model Organisation {
+  id                  String                @id @default(cuid())
+  name                String
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  description         String?
+  imageUrl            String?
+  // one to many
+  projects            Project[]
+  // many to many
+  UsersOnOrganisation UsersOnOrganisation[]
+}
+
+model UsersOnOrganisation {
+  user           User                 @relation(fields: [userId], references: [id])
+  userId         String
+  organisation   Organisation         @relation(fields: [organisationId], references: [id])
+  organisationId String
+  assignedAt     DateTime             @default(now())
+  assignedBy     String?
+  role           OrganisationUserRole
+
+  @@id([userId, organisationId])
+}
+
+enum OrganisationUserRole {
+  MEMBER
+  ADMIN
+}
+
+// TODO: Add relation to Projects
+model User {
+  id                  String                @id @default(cuid())
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  keycloakId          String
+  isSuperuser         Boolean               @default(false)
+  // many to many
+  UsersOnOrganisation UsersOnOrganisation[]
+}
+
+model Contact {
+  id                 String               @id @default(cuid())
+  firstName          String
+  lastName           String
+  email              String?
+  company            String?
+  country            String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  description        String?
+  // many to many
+  ContactsOnProjects ContactsOnProjects[]
+}
+
+model Project {
+  id                 String               @id @default(cuid())
+  name               String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  description        String?
+  // one to one
+  contract           Contract?            @relation(fields: [contractId], references: [id])
+  contractId         String               @unique
+  // one to many
+  devices            Device[]
+  Organisation       Organisation?        @relation(fields: [organisationId], references: [id])
+  organisationId     String?
+  // many to many
+  ContactsOnProjects ContactsOnProjects[]
+}
+
+model ContactsOnProjects {
+  contact     Contact     @relation(fields: [contactId], references: [id])
+  contactId   String
+  project     Project     @relation(fields: [projectId], references: [id])
+  projectId   String
+  assignedAt  DateTime    @default(now())
+  assignedBy  String?
+  contactType ContactType
+
+  @@id([contactId, projectId])
+}
+
+enum ContactType {
+  SALES
+  CUSTOMER
+}
+
+model Contract {
+  id          String        @id @default(cuid())
+  name        String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  description String?
+  contractNr  String
+  companyName String?
+  status      ContractState @default(INACTIVE)
+  // one to one
+  Project     Project?
+}
+
+enum ContractState {
+  INACTIVE
+  ACTIVE
+  PREPARATION
+  CANCELED
+  DEMO
+}
+
+// TODO: Add sensors (many to many), add subEdgeDevices (one to many), DeviceConfig (one to many), OperationsCenter status
+model Device {
+  id                    String                  @id @default(cuid())
+  name                  String
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  description           String?
+  type                  String
+  communicationId       String?
+  enabled               Boolean
+  serialNr              String?
+  imageUrl              String?
+  version               String?
+  // one to many
+  Project               Project?                @relation(fields: [projectId], references: [id])
+  projectId             String?
+  // many to many
+  ApplicationsOnDevices ApplicationsOnDevices[]
+}
+
+model Application {
+  id                    String                  @id @default(cuid())
+  name                  String
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  description           String?
+  type                  String
+  // many to many
+  ApplicationsOnDevices ApplicationsOnDevices[]
+}
+
+model ApplicationsOnDevices {
+  application   Application @relation(fields: [applicationId], references: [id])
+  applicationId String
+  device        Device      @relation(fields: [deviceId], references: [id])
+  deviceId      String
+  assignedAt    DateTime    @default(now())
+  assignedBy    String?
+  enabled       Boolean
+
+  @@id([applicationId, deviceId])
 }
