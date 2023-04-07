@@ -24,9 +24,9 @@ model Organisation {
 }
 
 model UsersOnOrganisation {
-  user           User                 @relation(fields: [userId], references: [id])
+  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String
-  organisation   Organisation         @relation(fields: [organisationId], references: [id])
+  organisation   Organisation         @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   organisationId String
   assignedAt     DateTime             @default(now())
   assignedBy     String?
@@ -72,11 +72,10 @@ model Project {
   updatedAt          DateTime             @updatedAt
   description        String?
   // one to one
-  contract           Contract?            @relation(fields: [contractId], references: [id])
-  contractId         String               @unique
+  Contract           Contract?
   // one to many
   devices            Device[]
-  Organisation       Organisation?        @relation(fields: [organisationId], references: [id])
+  Organisation       Organisation?        @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   organisationId     String?
   // many to many
   ContactsOnProjects ContactsOnProjects[]
@@ -84,9 +83,9 @@ model Project {
 }
 
 model ContactsOnProjects {
-  contact     Contact     @relation(fields: [contactId], references: [id])
+  contact     Contact     @relation(fields: [contactId], references: [id], onDelete: Cascade)
   contactId   String
-  project     Project     @relation(fields: [projectId], references: [id])
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId   String
   assignedAt  DateTime    @default(now())
   assignedBy  String?
@@ -101,9 +100,9 @@ enum ContactType {
 }
 
 model GuestsOnProjects {
-  user       User             @relation(fields: [userId], references: [id])
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
-  project    Project          @relation(fields: [projectId], references: [id])
+  project    Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId  String
   assignedAt DateTime         @default(now())
   assignedBy String?
@@ -127,7 +126,8 @@ model Contract {
   companyName String?
   status      ContractState @default(INACTIVE)
   // one to one
-  Project     Project?
+  project     Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String        @unique
 }
 
 enum ContractState {
@@ -155,7 +155,7 @@ model Device {
   connectionInterval    Int?
   currentConfig         String?
   // one to many
-  Project               Project?                @relation(fields: [projectId], references: [id])
+  Project               Project?                @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId             String?
   Config                DeviceConfig[]
   // many to many
@@ -163,8 +163,8 @@ model Device {
   SensorsOnDevices      SensorsOnDevices[]
   // self relation
   parentEdgeDeviceId    String?
-  subEdgeDevice         Device?                 @relation("SubEdgeDevice", fields: [parentEdgeDeviceId], references: [id])
-  parentEdgeDevice      Device[]                @relation("SubEdgeDevice")
+  parentEdgeDevice      Device?                 @relation("SubEdgeDevice", fields: [parentEdgeDeviceId], references: [id], onDelete: Cascade)
+  subEdgeDevice         Device[]                @relation("SubEdgeDevice")
 }
 
 model DeviceConfig {
@@ -176,7 +176,7 @@ model DeviceConfig {
   type        String
   version     String   @default("v0.0.1")
   // one to many
-  Device      Device?  @relation(fields: [deviceId], references: [id])
+  Device      Device?  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
   deviceId    String?
 }
 
@@ -192,9 +192,9 @@ model Application {
 }
 
 model ApplicationsOnDevices {
-  application   Application @relation(fields: [applicationId], references: [id])
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
   applicationId String
-  device        Device      @relation(fields: [deviceId], references: [id])
+  device        Device      @relation(fields: [deviceId], references: [id], onDelete: Cascade)
   deviceId      String
   assignedAt    DateTime    @default(now())
   assignedBy    String?
