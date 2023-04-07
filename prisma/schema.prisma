@@ -174,7 +174,7 @@ model DeviceConfig {
   updatedAt   DateTime @updatedAt
   description String?
   type        String
-  version     String
+  version     String   @default("v0.0.1")
   // one to many
   Device      Device?  @relation(fields: [deviceId], references: [id])
   deviceId    String?
@@ -198,7 +198,7 @@ model ApplicationsOnDevices {
   deviceId      String
   assignedAt    DateTime    @default(now())
   assignedBy    String?
-  enabled       Boolean
+  enabled       Boolean     @default(true)
 
   @@id([applicationId, deviceId])
 }
@@ -221,7 +221,7 @@ model SensorsOnDevices {
   deviceId   String
   assignedAt DateTime @default(now())
   assignedBy String?
-  enabled    Boolean
+  enabled    Boolean  @default(true)
 
   @@id([sensorId, deviceId])
 }
