@@ -2,7 +2,7 @@
 
 Showman is an application to manage IoT Projects and Devices as well as orchestrating and automating connected services. It show possible integrations for a production grade application, which includes some up to date features like:
 
-- User Auth (Keycloak)
+-   User Auth (Keycloak)
 
 <br>
 
@@ -35,7 +35,14 @@ YugabyteDB serves as the primary database for application state. It's a cloud na
 
 1. Start the DB using the compose file
 2. Open the exposed Admin UI on port 9000 (http://localhost:9000/)
-3. Init the database by adding the schema - run `npx prisma db push`
+3. Add the db endpoint to the `.env` file
+
+```dotenv
+# yugabytedb
+DATABASE_URL="postgresql://yugabyte:yugabyte@localhost:5433/yugabyte"
+```
+
+4. Init the database by adding the schema - run `npx prisma db push`
 
 > ℹ If you run into problems running this command behind a corporate firewall, check out [this link](https://www.prisma.io/docs/concepts/components/prisma-cli/installation#using-a-http-proxy-for-the-cli).
 
