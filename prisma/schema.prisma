@@ -40,7 +40,6 @@ enum OrganisationUserRole {
   ADMIN
 }
 
-// TODO: Add relation to Projects
 model User {
   id                  String                @id @default(cuid())
   createdAt           DateTime              @default(now())
@@ -49,6 +48,7 @@ model User {
   isSuperuser         Boolean               @default(false)
   // many to many
   UsersOnOrganisation UsersOnOrganisation[]
+  GuestsOnProjects    GuestsOnProjects[]
 }
 
 model Contact {
@@ -80,6 +80,7 @@ model Project {
   organisationId     String?
   // many to many
   ContactsOnProjects ContactsOnProjects[]
+  GuestsOnProjects   GuestsOnProjects[]
 }
 
 model ContactsOnProjects {
@@ -97,6 +98,23 @@ model ContactsOnProjects {
 enum ContactType {
   SALES
   CUSTOMER
+}
+
+model GuestsOnProjects {
+  user       User             @relation(fields: [userId], references: [id])
+  userId     String
+  project    Project          @relation(fields: [projectId], references: [id])
+  projectId  String
+  assignedAt DateTime         @default(now())
+  assignedBy String?
+  role       ProjectGuestRole
+
+  @@id([userId, projectId])
+}
+
+enum ProjectGuestRole {
+  GUEST
+  MEMBER
 }
 
 model Contract {
@@ -120,7 +138,6 @@ enum ContractState {
   DEMO
 }
 
-// TODO: Add sensors (many to many), add subEdgeDevices (one to many), DeviceConfig (one to many), OperationsCenter status
 model Device {
   id                    String                  @id @default(cuid())
   name                  String
@@ -129,15 +146,38 @@ model Device {
   description           String?
   type                  String
   communicationId       String?
-  enabled               Boolean
+  enabled               Boolean                 @default(false)
   serialNr              String?
   imageUrl              String?
   version               String?
+  lastConnectedOn       DateTime?
+  connectionState       String?
+  connectionInterval    Int?
+  currentConfig         String?
   // one to many
   Project               Project?                @relation(fields: [projectId], references: [id])
   projectId             String?
+  Config                DeviceConfig[]
   // many to many
   ApplicationsOnDevices ApplicationsOnDevices[]
+  SensorsOnDevices      SensorsOnDevices[]
+  // self relation
+  parentEdgeDeviceId    String?
+  subEdgeDevice         Device?                 @relation("SubEdgeDevice", fields: [parentEdgeDeviceId], references: [id])
+  parentEdgeDevice      Device[]                @relation("SubEdgeDevice")
+}
+
+model DeviceConfig {
+  id          String   @id @default(cuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String?
+  type        String
+  version     String
+  // one to many
+  Device      Device?  @relation(fields: [deviceId], references: [id])
+  deviceId    String?
 }
 
 model Application {
@@ -161,4 +201,27 @@ model ApplicationsOnDevices {
   enabled       Boolean
 
   @@id([applicationId, deviceId])
+}
+
+model Sensor {
+  id               String             @id @default(cuid())
+  name             String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  description      String?
+  type             String
+  // many to many
+  SensorsOnDevices SensorsOnDevices[]
+}
+
+model SensorsOnDevices {
+  sensor     Sensor   @relation(fields: [sensorId], references: [id])
+  sensorId   String
+  device     Device   @relation(fields: [deviceId], references: [id])
+  deviceId   String
+  assignedAt DateTime @default(now())
+  assignedBy String?
+  enabled    Boolean
+
+  @@id([sensorId, deviceId])
 }
