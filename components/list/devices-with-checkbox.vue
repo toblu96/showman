@@ -1,9 +1,6 @@
 <template>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <!-- <h1 class="text-base font-semibold leading-6 text-gray-900">
-        Users
-      </h1> -->
       <p class="mt-2 text-sm text-gray-700">
         A list of all the users in your account including their name, title, email and role.
       </p>
@@ -15,8 +12,8 @@
     </div>
   </div>
   <div class="mt-8 flow-root">
-    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div class="overflow-x-auto">
+      <div class="inline-block min-w-full py-2 align-middle ">
         <div class="relative">
           <div v-if="selectedPeople.length > 0" class="absolute left-14 top-0 flex h-12 items-center space-x-3 bg-white sm:left-12">
             <button type="button" class="inline-flex items-center rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white">

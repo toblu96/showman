@@ -37,8 +37,7 @@
 
 <script setup lang="ts">
 import {
-  ChevronRightIcon,
-  HomeIcon
+  ChevronRightIcon
 } from '@heroicons/vue/20/solid'
 
 interface BreadcrumbLink {
@@ -46,7 +45,7 @@ interface BreadcrumbLink {
     to: string
 }
 
-const props = defineProps<{
+defineProps<{
   breadcrumbs?: BreadcrumbLink[]
   homeLink: string
   currentLink: string
