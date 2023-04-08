@@ -68,7 +68,7 @@ const activityItems = [
     <!-- Left sidebar & main wrapper -->
     <div class="min-w-0 flex-1 bg-white xl:flex">
       <!-- Projects List -->
-      <div class="overflow-y-auto bg-white px-8 lg:min-w-0 lg:flex-1">
+      <div class="overflow-y-auto bg-white  lg:min-w-0 lg:flex-1">
         <div class="pb-4 pl-4 pr-6 pt-4 sm:pl-6 lg:pl-8 xl:pl-6 xl:pt-6">
           <div class="flex items-center">
             <h1 class="flex-1 text-lg font-medium">
