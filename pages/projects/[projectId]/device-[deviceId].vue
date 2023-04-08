@@ -2,6 +2,8 @@
   <LayoutPageWithBreadcrumbs home-link="/projects" :breadcrumbs="breadcrumbs" :current-link="`Device ${$route.params.deviceId}`">
     <PageHeadingMetaActions />
     <TabsInPills />
+
+    <ListDevicesWithCheckbox />
   </LayoutPageWithBreadcrumbs>
 </template>
 

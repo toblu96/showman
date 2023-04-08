@@ -1,8 +1,10 @@
 <template>
-  <LayoutPageWithBreadcrumbs home-link="/projects" :current-link="`Project ${$route.params.projectId}`">
-    <PageHeadingMetaActions />
-    <TabsInPills />
-
-    <ListDevicesWithCheckbox />
-  </LayoutPageWithBreadcrumbs>
+  <LayoutConstrainedGridWithBreadcrumbs home-link="/projects" :current-link="`Project ${$route.params.projectId}`">
+    <!-- <template #aside-top>
+      nope
+    </template> -->
+    <!-- <template #main-content>
+      device list
+    </template> -->
+  </LayoutConstrainedGridWithBreadcrumbs>
 </template>
