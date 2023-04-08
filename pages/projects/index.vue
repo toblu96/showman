@@ -10,7 +10,7 @@ import {
 const projects = [
   {
     name: 'W800 Demo',
-    href: '#',
+    href: '1',
     siteHref: '#',
     repoHref: '#',
     repo: 'debbielewis/workcation',
@@ -22,7 +22,7 @@ const projects = [
   },
   {
     name: 'Lab Project',
-    href: '#',
+    href: '2',
     siteHref: '#',
     repoHref: '#',
     repo: 'debbielewis/workcation',
@@ -34,7 +34,7 @@ const projects = [
   },
   {
     name: 'Workplace 001',
-    href: '#',
+    href: '3',
     siteHref: '#',
     repoHref: '#',
     repo: 'debbielewis/workcation',
@@ -153,13 +153,13 @@ const activityItems = [
                   </span>
 
                   <h2 class="text-sm font-medium">
-                    <a :href="project.href">
+                    <NuxtLink :to="`/projects/${project.href}`">
                       <span class="absolute inset-0" aria-hidden="true" />
                       {{ project.name }}
                       <span class="sr-only">{{
                         project.active ? "Running" : "Not running"
                       }}</span>
-                    </a>
+                    </NuxtLink>
                   </h2>
                 </div>
                 <a

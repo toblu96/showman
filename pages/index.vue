@@ -7,7 +7,7 @@ const { data: examples, refresh } = useFetch('/api/examples')
 <template>
   <div>
     <h1 class="text-3xl font-bold underline">
-      Hello world!
+      Personal Dashboard
     </h1>
     some text
     {{ userData }}
