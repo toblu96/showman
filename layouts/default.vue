@@ -63,6 +63,15 @@ const getUsernameInitials = () => {
   ) as string[]
   return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()
 }
+
+const isCurrentNav = (routerPath: string, navPath: string) => {
+  if (routerPath === '/') {
+    return routerPath === navPath
+  } else {
+    if (navPath === '/') { return false } // prevent from showing two active path in nav
+    return routerPath.startsWith(navPath)
+  }
+}
 </script>
 
 <template>
@@ -222,7 +231,7 @@ const getUsernameInitials = () => {
                   <a
                     :href="item.href"
                     :class="[
-                      route.matched[0].path === item.href
+                      isCurrentNav(route.path, item.href)
                         ? 'bg-gray-800 text-white'
                         : 'text-gray-400 hover:bg-gray-800 hover:text-white',
                       'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
