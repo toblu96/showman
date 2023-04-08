@@ -1,8 +1,8 @@
-import forms from "@tailwindcss/forms";
+import forms from '@tailwindcss/forms'
 
 export default {
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [forms()],
-};
+  plugins: [forms()]
+}
