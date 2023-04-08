@@ -102,6 +102,18 @@ const people = [
     title: 'Front-end Developer',
     email: 'dev3@example.com',
     role: 'Member'
+  },
+  {
+    name: 'Device 4',
+    title: 'Front-end Developer',
+    email: 'dev4@example.com',
+    role: 'Member'
+  },
+  {
+    name: 'Device 5',
+    title: 'Front-end Developer',
+    email: 'dev5@example.com',
+    role: 'Member'
   }
   // More people...
 ]

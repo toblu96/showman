@@ -44,7 +44,7 @@
         <!-- Left column -->
         <div class="flex flex-col lg:col-span-2 h-full">
           <!-- Welcome panel -->
-          <section class="px-4 py-6 sm:px-6 lg:pl-6 lg:border-r border-gray-200" aria-labelledby="content-header">
+          <section class="px-4 py-6 sm:px-6 lg:border-r border-gray-200" aria-labelledby="content-header">
             <slot name="content-header">
               <PlaceholderStroked class="h-32">
                 content-header
@@ -53,7 +53,7 @@
           </section>
 
           <!-- Actions panel -->
-          <section class="px-4 py-6 sm:px-6 lg:pl-6 border-t border-b lg:border-r border-gray-200 h-full" aria-labelledby="main-content">
+          <section class="px-4 py-6 sm:px-6 border-t border-b lg:border-r border-gray-200 h-full" aria-labelledby="main-content">
             <slot name="main-content">
               <PlaceholderStroked class="h-screen">
                 main-content
@@ -65,7 +65,7 @@
         <!-- Right column -->
         <div class="grid grid-cols-1 gap-4 lg:gap-0 sticky top-16">
           <!-- Announcements -->
-          <section class="px-4 py-6 sm:px-6 lg:pl-6" aria-labelledby="aside-top">
+          <section class="px-4 py-6 sm:px-6" aria-labelledby="aside-top">
             <slot name="aside-top">
               <PlaceholderStroked class="h-72">
                 aside-top
@@ -74,7 +74,7 @@
           </section>
 
           <!-- Recent Hires -->
-          <section class="px-4 py-6 sm:px-6 lg:pl-6 border-t border-gray-200" aria-labelledby="aside-bottom">
+          <section class="px-4 py-6 sm:px-6 border-t border-gray-200" aria-labelledby="aside-bottom">
             <slot name="aside-bottom">
               <PlaceholderStroked class="h-72">
                 aside-bottom
